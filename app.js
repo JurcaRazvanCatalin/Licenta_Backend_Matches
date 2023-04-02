@@ -525,6 +525,7 @@ const startApp = () => {
   database();
   initRoutes();
 };
+main();
 
 startApp();
 cron.schedule("0 0 * * *", main, {});
