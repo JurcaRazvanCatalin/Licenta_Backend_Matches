@@ -152,6 +152,35 @@ const scrapeMatches = async () => {
         }
       }
     }
+    // for (i = 1410; i <= 1411; i++) {
+    //   if (i === 1410) {
+    //     let j = 1908;
+    //     for (z = 7010; z <= 7012; z++) {
+    //       await pages.goto(
+    //         `https://baschet.ro/liga-nationala-de-baschet-masculin/rezultate?faza=${i}&grupa=${j}&etapa=${z}`
+    //       );
+    //       const html = await pages.evaluate(() => document.body.innerHTML);
+    //       const $ = await cheerio.load(html);
+    //       $(
+    //         "#app > div.container > div > div.col-lg-9 > div > div > table > tbody > tr"
+    //       ).each((i, element) => {
+    //         const parameter = $(element)
+    //           .find("td:nth-child(1)")
+    //           .find("div")
+    //           .find("div:nth-child(1)")
+    //           .find("span")
+    //           .text();
+    //         if (parameter === "-") {
+    //           const link = `${$(element).attr("data-link")}`;
+    //           data.push({ link });
+    //         } else {
+    //           const link = `${$(element).attr("data-link")}/statistici`;
+    //           data.push({ link });
+    //         }
+    //       });
+    //     }
+    //   }
+    // }
     // console.log(data);
     return data;
   } catch (err) {
@@ -526,6 +555,5 @@ const startApp = () => {
   initRoutes();
 };
 main();
-
 startApp();
 cron.schedule("0 0 * * *", main, {});
