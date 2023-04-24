@@ -17,6 +17,10 @@ const createMatches = async (match) => {
       awayTeam: match.awayTeam,
       homeTeam: match.homeTeam,
       date: match.date,
+      referee: match.referee,
+      awayTeamScore: match.awayTeamScore,
+      homeTeamScore: match.homeTeamScore,
+      matchTime: match.matchTime,
     })) == null
   ) {
     collectionService.createRecord(match);
@@ -26,6 +30,10 @@ const createMatches = async (match) => {
         awayTeam: match.awayTeam,
         homeTeam: match.homeTeam,
         date: match.date,
+        referee: match.referee,
+        awayTeamScore: match.awayTeamScore,
+        homeTeamScore: match.homeTeamScore,
+        matchTime: match.matchTime,
       },
       match,
       {
@@ -152,36 +160,166 @@ const scrapeMatches = async () => {
         }
       }
     }
-    // for (i = 1410; i <= 1411; i++) {
-    //   if (i === 1410) {
-    //     let j = 1908;
-    //     for (z = 7010; z <= 7012; z++) {
-    //       await pages.goto(
-    //         `https://baschet.ro/liga-nationala-de-baschet-masculin/rezultate?faza=${i}&grupa=${j}&etapa=${z}`
-    //       );
-    //       const html = await pages.evaluate(() => document.body.innerHTML);
-    //       const $ = await cheerio.load(html);
-    //       $(
-    //         "#app > div.container > div > div.col-lg-9 > div > div > table > tbody > tr"
-    //       ).each((i, element) => {
-    //         const parameter = $(element)
-    //           .find("td:nth-child(1)")
-    //           .find("div")
-    //           .find("div:nth-child(1)")
-    //           .find("span")
-    //           .text();
-    //         if (parameter === "-") {
-    //           const link = `${$(element).attr("data-link")}`;
-    //           data.push({ link });
-    //         } else {
-    //           const link = `${$(element).attr("data-link")}/statistici`;
-    //           data.push({ link });
-    //         }
-    //       });
-    //     }
-    //   }
-    // }
-    // console.log(data);
+    for (i = 1410; i <= 1411; i++) {
+      if (i === 1410) {
+        for (j = 1907; j <= 1908; j++) {
+          if (j === 1907) {
+            for (z = 7010; z <= 7012; z++) {
+              await pages.goto(
+                `https://baschet.ro/liga-nationala-de-baschet-masculin/rezultate?faza=${i}&grupa=${j}&etapa=${z}`
+              );
+              const html = await pages.evaluate(() => document.body.innerHTML);
+              const $ = await cheerio.load(html);
+              $(
+                "#app > div.container > div > div.col-lg-9 > div > div > table > tbody > tr"
+              ).each((i, element) => {
+                const parameter = $(element)
+                  .find("td:nth-child(1)")
+                  .find("div")
+                  .find("div:nth-child(1)")
+                  .find("span")
+                  .text();
+                if (parameter === "-") {
+                  const link = `${$(element).attr("data-link")}`;
+                  data.push({ link });
+                } else {
+                  const link = `${$(element).attr("data-link")}/statistici`;
+                  data.push({ link });
+                }
+              });
+            }
+            for (z = 7027; z <= 7038; z = z + 11) {
+              await pages.goto(
+                `https://baschet.ro/liga-nationala-de-baschet-masculin/rezultate?faza=${i}&grupa=${j}&etapa=${z}`
+              );
+              const html = await pages.evaluate(() => document.body.innerHTML);
+              const $ = await cheerio.load(html);
+              $(
+                "#app > div.container > div > div.col-lg-9 > div > div > table > tbody > tr"
+              ).each((i, element) => {
+                const parameter = $(element)
+                  .find("td:nth-child(1)")
+                  .find("div")
+                  .find("div:nth-child(1)")
+                  .find("span")
+                  .text();
+                if (parameter === "-") {
+                  const link = `${$(element).attr("data-link")}`;
+                  data.push({ link });
+                } else {
+                  const link = `${$(element).attr("data-link")}/statistici`;
+                  data.push({ link });
+                }
+              });
+            }
+          } else if (j === 1908) {
+            for (z = 7016; z <= 7017; z++) {
+              await pages.goto(
+                `https://baschet.ro/liga-nationala-de-baschet-masculin/rezultate?faza=${i}&grupa=${j}&etapa=${z}`
+              );
+              const html = await pages.evaluate(() => document.body.innerHTML);
+              const $ = await cheerio.load(html);
+              $(
+                "#app > div.container > div > div.col-lg-9 > div > div > table > tbody > tr"
+              ).each((i, element) => {
+                const parameter = $(element)
+                  .find("td:nth-child(1)")
+                  .find("div")
+                  .find("div:nth-child(1)")
+                  .find("span")
+                  .text();
+                if (parameter === "-") {
+                  const link = `${$(element).attr("data-link")}`;
+                  data.push({ link });
+                } else {
+                  const link = `${$(element).attr("data-link")}/statistici`;
+                  data.push({ link });
+                }
+              });
+            }
+          }
+        }
+      } else if (i === 1411) {
+        for (j = 1909; j <= 1911; j++) {
+          if (j === 1909) {
+            for (z = 7013; z <= 7015; z++) {
+              await pages.goto(
+                `https://baschet.ro/liga-nationala-de-baschet-masculin/rezultate?faza=${i}&grupa=${j}&etapa=${z}`
+              );
+              const html = await pages.evaluate(() => document.body.innerHTML);
+              const $ = await cheerio.load(html);
+              $(
+                "#app > div.container > div > div.col-lg-9 > div > div > table > tbody > tr"
+              ).each((i, element) => {
+                const parameter = $(element)
+                  .find("td:nth-child(1)")
+                  .find("div")
+                  .find("div:nth-child(1)")
+                  .find("span")
+                  .text();
+                if (parameter === "-") {
+                  const link = `${$(element).attr("data-link")}`;
+                  data.push({ link });
+                } else {
+                  const link = `${$(element).attr("data-link")}/statistici`;
+                  data.push({ link });
+                }
+              });
+            }
+          } else if (j === 1910) {
+            for (z = 7033; z <= 7034; z++) {
+              await pages.goto(
+                `https://baschet.ro/liga-nationala-de-baschet-masculin/rezultate?faza=${i}&grupa=${j}&etapa=${z}`
+              );
+              const html = await pages.evaluate(() => document.body.innerHTML);
+              const $ = await cheerio.load(html);
+              $(
+                "#app > div.container > div > div.col-lg-9 > div > div > table > tbody > tr"
+              ).each((i, element) => {
+                const parameter = $(element)
+                  .find("td:nth-child(1)")
+                  .find("div")
+                  .find("div:nth-child(1)")
+                  .find("span")
+                  .text();
+                if (parameter === "-") {
+                  const link = `${$(element).attr("data-link")}`;
+                  data.push({ link });
+                } else {
+                  const link = `${$(element).attr("data-link")}/statistici`;
+                  data.push({ link });
+                }
+              });
+            }
+          } else if (j === 1911) {
+            for (z = 7035; z <= 7037; z++) {
+              await pages.goto(
+                `https://baschet.ro/liga-nationala-de-baschet-masculin/rezultate?faza=${i}&grupa=${j}&etapa=${z}`
+              );
+              const html = await pages.evaluate(() => document.body.innerHTML);
+              const $ = await cheerio.load(html);
+              $(
+                "#app > div.container > div > div.col-lg-9 > div > div > table > tbody > tr"
+              ).each((i, element) => {
+                const parameter = $(element)
+                  .find("td:nth-child(1)")
+                  .find("div")
+                  .find("div:nth-child(1)")
+                  .find("span")
+                  .text();
+                if (parameter === "-") {
+                  const link = `${$(element).attr("data-link")}`;
+                  data.push({ link });
+                } else {
+                  const link = `${$(element).attr("data-link")}/statistici`;
+                  data.push({ link });
+                }
+              });
+            }
+          }
+        }
+      }
+    }
     return data;
   } catch (err) {
     console.error(err);
@@ -544,7 +682,7 @@ const main = async () => {
   const descriptionPage = await browser.newPage();
   const matches = await scrapeMatches();
   console.log(matches.length);
-  for (i = 0; i <= matches.length - 1; i++) {
+  for (i = 226; i <= matches.length - 1; i++) {
     await scrapeMatchDescription(matches[i].link, descriptionPage);
   }
 };
